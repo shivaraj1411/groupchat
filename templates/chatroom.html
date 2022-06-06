@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Group Chats {% endblock %}</h1>
+    <div style="width: 50%; margin: auto">
+        {{ message_str_pre|safe }}
+        {% for message in message_str %}
+            {% if loop.index % 2 == 0 %}
+                {% set bg_color = '#e6f9ff' %}
+            {% else %}
+                {% set bg_color = '#eee' %}
+            {% endif %}
+
+            <div style="padding: 10px; background-color: {{ bg_color }}; margin: 10px">
+                <p>#{{ loop.index }}</p>
+                <p style="font-size: 24px">{{ message|safe }}</p>
+            </div>
+        {% endfor %}
+        {{ message_str_post|safe }}
+    </div>
+<a class="btn btn-primary" href="/admin/groups"><i class="icon-arrow-left icon-white"></i> Back</a>
+{% endblock %}
